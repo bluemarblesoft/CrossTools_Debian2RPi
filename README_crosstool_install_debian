@@ -1,0 +1,28 @@
+git clone https://github.com/crosstool-ng/crosstool-ng
+cd crosstool-ng
+git checkout origin/master
+sudo apt-get install autoconf
+sudo apt-get install gperf
+sudo apt-get install bison
+sudo apt-get install flex
+sudo apt-get install makeinfo
+sudo apt-get install texinfo
+sudo apt-get install help2man
+sudo apt-get install gawk
+sudo apt-get install libtool
+sudo apt-get install libtool-bin
+./bootstrap
+./configure --prefix=/usr/local/crosstool-ng-1.23.0-240-gaec73d9c
+export PATH="${PATH}:/usr/local/crosstool-ng-1.23.0-240-gaec73d9c/bin"
+make
+sudo make install
+sudo cp ct-ng.comp /etc/bash_completion.d/
+cd ..
+mkdir crosstool-ng-builds && cd crosstool-ng-builds
+ct-ng help
+ct-ng list-samples
+mkdir armv6-rpi-linux-gnueabihf && cd armv6-rpi-linux-gnueabihf
+ct-ng armv6-rpi-linux-gnueabihf
+ct-ng menuconfig
+ct-ng build
+less build.log 
